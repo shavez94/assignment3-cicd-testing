@@ -1,0 +1,26 @@
+name: Azmi-CI/CD Testing
+
+on:
+  push:
+    branches:
+      - main  # Runs when pushing to the main branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # Clones the repo
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9  # Use Python 3.9
+
+      - name: Install Dependencies
+        run: |
+          pip install pytest  # Install testing dependencies
+
+      - name: Run Unit Tests
+        run: pytest tests/
